@@ -9,7 +9,22 @@ class TestController {
     }
 
     /**
-     * `POST | http://0.0.0.0:0000/api/test`
+     * @swagger
+     * /test:
+     *   post:
+     *     summary: Cria um novo teste
+     *     tags: [Test]
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *     responses:
+     *       201:
+     *         description: Test criado
+     *       500:
+     *         description: Erro interno
      */
     public async create(req: Request, res: Response): Promise<void> {
         try {
@@ -24,7 +39,31 @@ class TestController {
     }
 
     /**
-     * `PUT | http://0.0.0.0:0000/api/test/:id`
+     * @swagger
+     * /test/{id}:
+     *   put:
+     *     summary: Atualiza um teste pelo ID
+     *     tags: [Test]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: ID do teste
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             type: object
+     *     responses:
+     *       200:
+     *         description: Test atualizado
+     *       400:
+     *         description: ID inválido ou ausente
+     *       500:
+     *         description: Erro interno
      */
     public async update(req: Request, res: Response): Promise<void> {
         try {
@@ -44,7 +83,16 @@ class TestController {
     }
 
     /**
-     * `GET | http://0.0.0.0:0000/api/test`
+     * @swagger
+     * /test:
+     *   get:
+     *     summary: Lista todos os testes
+     *     tags: [Test]
+     *     responses:
+     *       200:
+     *         description: Lista retornada
+     *       500:
+     *         description: Erro interno
      */
     public async read(req: Request, res: Response): Promise<void> {
         try {
@@ -58,7 +106,25 @@ class TestController {
     }
 
     /**
-     * `GET | http://0.0.0.0:0000/api/test/:id`
+     * @swagger
+     * /test/{id}:
+     *   get:
+     *     summary: Busca um teste pelo ID
+     *     tags: [Test]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: ID do teste
+     *     responses:
+     *       200:
+     *         description: Test encontrado
+     *       400:
+     *         description: ID inválido ou ausente
+     *       500:
+     *         description: Erro interno
      */
     public async readOne(req: Request, res: Response): Promise<void> {
         try {
@@ -77,7 +143,23 @@ class TestController {
     }
 
     /**
-     * `DELETE | http://0.0.0.0:0000/api/test/:id`
+     * @swagger
+     * /test/{id}:
+     *   delete:
+     *     summary: Deleta um teste pelo ID
+     *     tags: [Test]
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: string
+     *         description: ID do teste
+     *     responses:
+     *       204:
+     *         description: Test removido
+     *       500:
+     *         description: Erro interno
      */
     public async delete(req: Request, res: Response): Promise<void> {
         try {
@@ -91,9 +173,6 @@ class TestController {
         }
     }
 
-    /**
-     * `GET | http://0.0.0.0:0000/api/test/_`
-     */
     public async __test__(_: Request, res: Response) {
         try {
             const testService = this.testService.__test__()
